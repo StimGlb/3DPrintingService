@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demande reçue - StimGLB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Roboto', 'Open Sans', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 20px;
+            padding: 40px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 5px;
+        }
+        
+        .message h2 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .contact-info h3 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2196F3, #21CBF3);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #2196F3;
+            border: 2px solid #2196F3;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .timeline {
+            text-align: left;
+            margin: 30px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .timeline-icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            width: 40px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">✅</div>
+        
+        <h1>Demande reçue !</h1>
+        
+        <div class="message">
+            <h2>Merci pour votre confiance 🙏</h2>
+            <p>Votre demande de devis d'impression 3D a bien été envoyée. Je vais l'analyser et vous recontacter très rapidement.</p>
+        </div>
+        
+        <div class="contact-info">
+            <h3>📞 Contact direct</h3>
+            <p><strong>Email :</strong> stimglb@gmail.com</p>
+            <p><strong>Réponse :</strong> Sous 2h en journée</p>
+        </div>
+        
+        <div class="timeline">
+            <h3 style="color: #2196F3; margin-bottom: 15px;">🚀 Prochaines étapes :</h3>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">⏱️</div>
+                <div>
+                    <strong>Dans les 4 heures</strong><br>
+                    Analyse de votre demande et premier contact
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">💡</div>
+                <div>
+                    <strong>J+1</strong><br>
+                    Conseil personnalisé et devis détaillé
+                </div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-icon">🛠️</div>
+                <div>
+                    <strong>Après validation</strong><br>
+                    Impression et livraison locale
+                </div>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <a href="/" class="btn btn-primary">🏠 Retour à l'accueil</a>
+            <a href="mailto:stimglb@gmail.com" class="btn btn-secondary">✉️ Contact direct</a>
+        </div>
+        
+        <div class="footer">
+            <p><strong>StimGLB</strong> - Services d'impression 3D de quartier</p>
+            <p><em>Cergy-Pontoise et communes limitrophes</em></p>
+        </div>
+    </div>
+    
+    <script>
+        // Redirection automatique vers l'accueil après 30 secondes (optionnel)
+        // setTimeout(() => {
+        //     window.location.href = '/';
+        // }, 30000);
+    </script>
+</body>
+</html>
