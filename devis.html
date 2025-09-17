@@ -320,7 +320,7 @@
             <p>Décrivez votre projet d'impression 3D</p>
         </div>
         
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+        <form name="devis-impression-3d" method="POST" data-netlify="true" data-netlify-recaptcha="true" enctype="multipart/form-data">
             
             <div class="form-section contact-info">
                 <h2>Vos coordonnées</h2>
@@ -501,6 +501,9 @@
                     <label for="commentaires">Commentaires supplémentaires</label>
                     <textarea id="commentaires" name="commentaires" placeholder="Informations complémentaires, contraintes particulières, inspiration..."></textarea>
                 </div>
+                
+                <!-- Protection anti-spam Netlify -->
+                <div data-netlify-recaptcha="true"></div>
             </div>
             
             <div class="info-box">
