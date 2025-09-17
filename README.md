@@ -3,8 +3,6 @@
 > **Services d'impression 3D de proximité à Cergy-Pontoise**  
 > *Vos objets du quotidien, imprimés sur mesure, livrés chez vous*
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/stimglb/deploy-status)](https://app.netlify.com/sites/3dprintingservice/deploys)
-
 ## 🎯 Concept
 
 StimGLB propose des services d'impression 3D **ultra-locaux** dans la région de Cergy-Pontoise, avec une approche centrée sur la **réparation**, l'**organisation maison** et l'**accessibilité**.
