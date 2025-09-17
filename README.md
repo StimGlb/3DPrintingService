@@ -3,7 +3,7 @@
 > **Services d'impression 3D de proximité à Cergy-Pontoise**  
 > *Vos objets du quotidien, imprimés sur mesure, livrés chez vous*
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR-SITE-ID/deploy-status)](https://app.netlify.com/sites/YOUR-SITE-NAME/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/stimglb/deploy-status)](https://app.netlify.com/sites/3dprintingservice/deploys)
 
 ## 🎯 Concept
 
@@ -66,8 +66,8 @@ StimGLB propose des services d'impression 3D **ultra-locaux** dans la région de
 
 ## 🌐 Site web
 
-**Production** : [stimglb.netlify.app](https://stimglb.netlify.app)  
-**Repo GitHub** : [github.com/votre-username/stimglb-3d](https://github.com/votre-username/stimglb-3d)
+**Production** : [stimglb.netlify.app](https://3Dprintingservice.netlify.app) 
+**Repo GitHub** : [github.com/votre-username/3DPrintingService]([https://github.com/](https://github.com/StimGlb/3DPrintingService))
 
 ## 📁 Structure du projet
 
