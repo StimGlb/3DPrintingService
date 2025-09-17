@@ -1,0 +1,42 @@
+# Redirections Netlify pour StimGLB
+# Documentation: https://docs.netlify.com/routing/redirects/
+
+# Pages principales
+/devis           /devis.html                200
+/contact         /contact.html              200
+/formulaire      /devis.html                301
+/demande         /devis.html                301
+
+# Redirections SEO amicales
+/services        /                          301
+/impression-3d   /                          301
+/cergy-pontoise  /                          301
+
+# Redirections utiles pour partage
+/whatsapp        https://wa.me/33XXXXXXXXX  302
+/email           mailto:stimglb@gmail.com   302
+
+# Gestion des erreurs
+/404.html        /                          404
+/*               /                          404
+
+# Headers de sécurité pour toutes les pages
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# Headers spécifiques pour les images
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Headers pour les fichiers 3D (si ajoutés plus tard)
+/models/*
+  Content-Type: application/octet-stream
+  Cache-Control: public, max-age=86400
+
+# Formulaires - Configuration pour Netlify Forms
+/devis.html
+  X-Robots-Tag: noindex
