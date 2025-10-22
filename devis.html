@@ -269,9 +269,14 @@
             margin-top: 20px;
         }
         
-        .submit-btn:hover {
+        .submit-btn:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
         
         .info-box {
@@ -286,6 +291,26 @@
             margin: 0;
             color: #1976d2;
             font-size: 16px;
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
         
         @media (max-width: 768px) {
@@ -320,7 +345,10 @@
             <p>Décrivez votre projet d'impression 3D</p>
         </div>
         
-        <form name="devis-impression-3d" method="POST" data-netlify="true" data-netlify-recaptcha="true" enctype="multipart/form-data">
+        <div id="message"></div>
+        
+        <!-- HYBRID: Garde data-netlify pour backup + notre JS pour Neon -->
+        <form name="devis-impression-3d" method="POST" data-netlify="true" data-netlify-recaptcha="true" enctype="multipart/form-data" id="devisForm">
             
             <div class="form-section contact-info">
                 <h2>Vos coordonnées</h2>
@@ -513,7 +541,7 @@
                 </p>
             </div>
             
-            <button type="submit" class="submit-btn">
+            <button type="submit" class="submit-btn" id="submitBtn">
                 🚀 Envoyer ma demande de devis
             </button>
             
@@ -521,7 +549,74 @@
     </div>
     
     <script>
-        // Amélioration UX pour les sélections radio/checkbox
+        // APPROCHE HYBRIDE: Envoie vers Neon d'abord, puis laisse Netlify Forms faire son backup
+        document.getElementById('devisForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const messageDiv = document.getElementById('message');
+            const form = e.target;
+            
+            // Désactiver le bouton
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Envoi en cours...';
+            
+            // Collecter les données
+            const formData = new FormData(form);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (key !== 'categories[]' && key !== 'photos') {
+                    data[key] = value;
+                }
+            }
+            
+            // Catégories
+            const categories = [];
+            document.querySelectorAll('input[name="categories[]"]:checked').forEach(cb => {
+                categories.push(cb.value);
+            });
+            data.categories = categories;
+            
+            try {
+                // 1. Envoyer vers ta BDD Neon
+                const response = await fetch('/.netlify/functions/submit-devis', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    // 2. Succès BDD Neon, maintenant envoyer via Netlify Forms (backup)
+                    // On laisse le form se soumettre naturellement
+                    messageDiv.innerHTML = '<div class="message success">✅ Votre demande a été envoyée avec succès ! Nous vous recontactons très vite.</div>';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Soumettre via Netlify Forms après un court délai
+                    setTimeout(() => {
+                        form.submit();
+                    }, 1000);
+                    
+                } else {
+                    throw new Error(result.error || 'Erreur BDD');
+                }
+                
+            } catch (error) {
+                console.error('Erreur BDD Neon:', error);
+                
+                // Si échec BDD, on envoie quand même via Netlify Forms (fallback)
+                messageDiv.innerHTML = '<div class="message success">✅ Votre demande a été envoyée ! (Mode backup activé)</div>';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                setTimeout(() => {
+                    form.submit();
+                }, 1000);
+            }
+        });
+        
+        // Améliorations UX
         document.querySelectorAll('.budget-option').forEach(option => {
             option.addEventListener('click', function() {
                 document.querySelectorAll('.budget-option').forEach(opt => opt.style.borderColor = '#e0e0e0');
@@ -540,7 +635,6 @@
             });
         });
         
-        // Amélioration de l'upload de fichiers
         document.getElementById('photos').addEventListener('change', function() {
             const label = document.querySelector('.file-upload-label');
             const files = this.files;
